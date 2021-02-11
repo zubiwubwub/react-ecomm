@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Link from 'next/link';
 import Item from './styles/ItemStyles';
 import Title from './styles/Title';
@@ -13,7 +14,7 @@ export default function Product({ product }) {
       </Title>
       <PriceTag>{FormatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
-      {/* Add products to the nav*/}
+      {/* Add products to the nav */}
     </Item>
   );
 }
