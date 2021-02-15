@@ -14,6 +14,7 @@ const NavStyles = styled.ul`
     position: relative;
     text-transform: uppercase;
     font-weight: 900;
+    border: 0;
     font-size: 1em;
     background: none;
     cursor: pointer;
