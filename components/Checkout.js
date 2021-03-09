@@ -7,9 +7,10 @@ import {
 import { loadStripe } from '@stripe/stripe-js';
 import nProgress from 'nprogress';
 import { useState } from 'react';
-import SickButton from './styles/SickButton';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import SickButton from './styles/SickButton';
+import { useRouter } from 'next/dist/client/router';
 
 const { default: styled } = require('styled-components');
 
@@ -42,6 +43,7 @@ function CheckoutForm() {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const elements = useElements();
+  const router = useRouter();
   const stripe = useStripe();
   const [checkout, { error: graphQLError }] = useMutation(
     CREATE_ORDER_MUTATION
@@ -75,6 +77,10 @@ function CheckoutForm() {
     console.log('Finished with the order');
     nProgress.done();
     // 6 change the page to view order
+    router.push({
+      pathname: '/order',
+      query: { id: order.data.checkout.id },
+    });
     // 7 close the cart
     // 8 turn the loader off
     setLoading(false);
